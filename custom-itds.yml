@@ -1,0 +1,6 @@
+version: '3'
+services:
+  maltego-trx:
+    build: .
+    image: local/maltego-trx:0.0.1
+   

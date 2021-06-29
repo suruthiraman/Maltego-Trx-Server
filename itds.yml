@@ -1,0 +1,22 @@
+version: '3'
+services:
+  itdsphp:
+    image: registry.paterva.com/itdsphp:latest
+    restart: unless-stopped
+    depends_on:
+      - itdsdb
+    volumes:
+      - itds_paired_config:/usr/local/paired_config/
+    ports:
+     - 443:443
+    tmpfs: /session_data:mode=0700,uid=33,gid=33,size=32M
+
+  itdsdb:
+    image: registry.paterva.com/itdsdb:latest
+    restart: unless-stopped
+    volumes:
+     - db_data:/var/lib/mysql
+
+volumes:
+  itds_paired_config:
+  db_data:
